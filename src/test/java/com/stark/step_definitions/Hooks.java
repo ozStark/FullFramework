@@ -66,9 +66,8 @@ public class Hooks {
     public void setup(){
         baseURI= "https://library2.cybertekschool.com/";
         basePath= "/rest/v1";
-
-
     }
+
     @After("@api")
     public static void tearDown() {
         reset();
