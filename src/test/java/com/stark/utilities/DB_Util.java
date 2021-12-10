@@ -39,9 +39,9 @@ public class DB_Util {
      */
     public static void createConnection() {
 
-        String url = ConfigurationReader.getProperty("hr.database.url");
-        String username = ConfigurationReader.getProperty("hr.database.username");
-        String password = ConfigurationReader.getProperty("hr.database.password");
+        String url = ConfigurationReader.getProperty("DBURL");
+        String username = ConfigurationReader.getProperty("DBusername");
+        String password = ConfigurationReader.getProperty("DBpassword");
 //        try {
 //            con = DriverManager.getConnection(url , username, password) ;
 //            System.out.println("CONNECTION SUCCESSFUL");
