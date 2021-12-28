@@ -38,29 +38,23 @@ public class AddBookAndVerifyDBStepDef {
     public void the_db_name_author_year_and_isbn_should_match() {
         LibrarianBooksPage librarianBooksPage = new LibrarianBooksPage();
         String bookName = librarianBooksPage.getCreatedBookName();
-        System.out.println("bookName = " + bookName);
         String authorName = librarianBooksPage.getCreatedBookAuthor();
-        System.out.println("authorName = " + authorName);
         String ISBN = librarianBooksPage.getCreatedBookISBN();
-        System.out.println("ISBN = " + ISBN);
         String year = librarianBooksPage.getCreatedBookYear();
-        System.out.println("year = " + year);
         DB_Util.createConnection();
+
         String query = "SELECT name, author, year, isbn FROM books WHERE " +
             "name = \'" + bookName + "\' AND " +
             "author = \'" + authorName +   "\' AND " +
             "year = \'" + year + "\' AND " +
             "isbn = \'" + ISBN + "\'"  ;
-        System.out.println("query = " + query);
         DB_Util.runQuery(query);
         List<String> DB_BookInfo = DB_Util.getRowDataAsList(1);
         List<String> createdBookInfo = new ArrayList<>();
-        System.out.println("DB_BookInfo = " + DB_BookInfo);
         createdBookInfo.add(bookName);
         createdBookInfo.add(authorName);
         createdBookInfo.add(year);
         createdBookInfo.add(ISBN);
-        System.out.println("createdBookInfo = " + createdBookInfo);
         assertEquals(createdBookInfo, DB_BookInfo);
     }
 
