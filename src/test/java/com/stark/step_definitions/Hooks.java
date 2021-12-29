@@ -48,9 +48,9 @@ public class Hooks {
     @Before("@db")
     public void dbHook() {
         System.out.println("creating database connection");
-        DB_Util.createConnection(ConfigurationReader.getProperty("library2.db.url")
-                , ConfigurationReader.getProperty("library2.db.username")
-                , ConfigurationReader.getProperty("library2.db.password"));
+        DB_Util.createConnection(ConfigurationReader.getProperty("DBURL")
+                , ConfigurationReader.getProperty("DBusername")
+                , ConfigurationReader.getProperty("DBpassword"));
     }
 
     @After("@db")
