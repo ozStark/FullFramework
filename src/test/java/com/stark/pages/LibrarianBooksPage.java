@@ -1,13 +1,21 @@
 package com.stark.pages;
 
 import com.github.javafaker.Faker;
+import com.stark.utilities.BrowserUtil;
+import com.stark.utilities.DB_Util;
 import com.stark.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LibrarianBooksPage {
 
@@ -31,6 +39,8 @@ public class LibrarianBooksPage {
     WebElement description;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement saveChanges;
+    @FindBy(xpath = "//input")
+    WebElement searchBox;
 
 
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
@@ -66,7 +76,7 @@ public class LibrarianBooksPage {
         System.out.println("createdBookName = " + this.createdBookName);
         bookName.sendKeys(createdBookName);
 
-        this.createdBookISBN= faker.code().isbn10();
+        this.createdBookISBN = faker.code().isbn10();
         System.out.println("createdBookISBN = " + createdBookISBN);
         isbn.sendKeys(createdBookISBN);
 
@@ -78,7 +88,6 @@ public class LibrarianBooksPage {
         description.sendKeys("This is sent from addRandomBook Function in LibrarianBooksPage");
         saveChanges.click();
     }
-
 
 
     public String getCreatedBookName() {
@@ -100,4 +109,42 @@ public class LibrarianBooksPage {
     public String getCreatedBookCategory() {
         return createdBookCategory;
     }
+
+
+    public List<Object> returnFirstRowBookAfterSearch(String searchQuery) {
+        List<Object> result = new ArrayList<>();
+
+        // (//tr)[2]/td[2]
+
+        List<WebElement> firstRowData = Driver.getDriver().findElements(By.xpath("(//tr)[2]/td"));
+
+        for (int i = 1; i < firstRowData.size() - 1; i++) {
+            result.add(firstRowData.get(i).getText());
+        }
+
+        return result;
+
+    }
+
+    public void searchQuery(String searchQuery) {
+
+        this.searchBox.sendKeys(searchQuery);
+        BrowserUtil.waitFor(1);
+
+    }
+
+    public String categoryNameFromId(String numberFromPojo) {
+
+        Map<String, String> fromDb = new HashMap<>();
+        DB_Util.runQuery("select id, name from book_categories");
+
+        for (int i = 1; i < 20; i++) {
+            fromDb = DB_Util.getRowMap(i);
+        }
+
+        return fromDb.get(numberFromPojo);
+
+
+    }
+
 }

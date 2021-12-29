@@ -1,5 +1,6 @@
 @wip
   @api
+  @db
 Feature: As a tester I should be able to create a book with the API
 
   Scenario: A book is created with POJO from the API and verify its

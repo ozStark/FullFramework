@@ -16,7 +16,7 @@ public class Book {
     private String isbn;
     private Object year;
     private String author;
-    private Object book_category_id;
+    private String book_category_id;
     private String description;
 
 }
