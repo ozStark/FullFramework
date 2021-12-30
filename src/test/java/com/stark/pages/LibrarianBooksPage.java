@@ -135,15 +135,18 @@ public class LibrarianBooksPage {
 
     public String categoryNameFromId(String numberFromPojo) {
 
+        System.out.println("\n this from book page \n");
+        System.out.println("numberFromPojo = " + numberFromPojo);
         Map<String, String> fromDb = new HashMap<>();
         DB_Util.runQuery("select id, name from book_categories");
+        int intFromPojo = Integer.parseInt(numberFromPojo);
+        fromDb = DB_Util.getRowMap(intFromPojo);
 
-        for (int i = 1; i < 20; i++) {
-            fromDb = DB_Util.getRowMap(i);
-        }
+        System.out.println("fromDb = " + fromDb);
+        System.out.println("fromDb.get(\"name\") = " + fromDb.get("name"));
+        System.out.println("\n end of book page function \n");
 
-        return fromDb.get(numberFromPojo);
-
+        return fromDb.get("name");
 
     }
 
