@@ -34,6 +34,7 @@ public class AddBookWithPojoVerifyUIandDB { //extends LibraryTestBase
     List<Object> test;
 
     Book book = new Book();
+    LibrarianBooksPage librarianBooksPage = new LibrarianBooksPage();
     @Given("The tester is authenticated")
     public void the_tester_is_authenticated() {
 
@@ -131,7 +132,7 @@ public class AddBookWithPojoVerifyUIandDB { //extends LibraryTestBase
 //        System.out.println("pojo below");
 //        System.out.println(book);
 
-        String s = new LibrarianBooksPage().categoryNameFromId("1");
+        String s = librarianBooksPage.categoryNameFromId("1");
         System.out.println("SHOULD BE BOOK CAT ABOVE");
         System.out.println();
         System.out.println();
@@ -147,13 +148,15 @@ public class AddBookWithPojoVerifyUIandDB { //extends LibraryTestBase
         String authorFromPojo = book.getAuthor();
         System.out.println("authorFromPojo = " + authorFromPojo);
         Object authorFromUi = fromUI.get(2);
-
         System.out.println("authorFromUi = " + authorFromUi);
-        String genreFromPojo = new LibrarianBooksPage().categoryNameFromId(book.getBook_category_id());
+        System.out.println("\nvvv issue vvv\n");
 
+        String genreFromPojo = librarianBooksPage.categoryNameFromId(book.getBook_category_id());
         System.out.println("genreFromPojo = " + genreFromPojo);
         Object genreFromUi = fromUI.get(3);
-        System.out.println("genreFromUi = " + genreFromUi);
+        System.out.println("\ngenreFromUi = " + genreFromUi + "\n");
+
+        System.out.println(" nnn  issue  nnn");
         Object yearFromPojo = book.getYear();
         System.out.println("yearFromPojo = " + yearFromPojo);
         Object yearFromUi = fromUI.get(4);
