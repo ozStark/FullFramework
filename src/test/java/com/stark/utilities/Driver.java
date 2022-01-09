@@ -22,6 +22,10 @@ import java.util.Objects;
  * so we are creating this class with technic we learned from Singleton pattern
  */
 public class Driver {
+    public static void main(String[] args) {
+        Driver.getDriver();
+        System.out.println((System.getProperty("BROWSER")));
+    }
     //
     private static WebDriver obj;
 
