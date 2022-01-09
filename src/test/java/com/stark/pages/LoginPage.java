@@ -2,6 +2,8 @@ package com.stark.pages;
 
 import com.stark.utilities.ConfigurationReader;
 import com.stark.utilities.Driver;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -51,5 +53,11 @@ public class LoginPage {
         signInBtn.click();
     }
 
+    public static void main(String[] args) {
+System.setProperty("NAME", "OZ");
+        System.out.println(System.getProperty("NAME"));
+        System.out.println(System.getProperty("JAVA_HOME"));
+
+    }
 
 }

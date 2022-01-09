@@ -1,4 +1,4 @@
-@wip
+@ui
 Feature: As a Librarian I should be able to add a book
 
   Scenario: As a Librarian when I add a book the DB should have the entry
